@@ -1,17 +1,24 @@
 import React from 'react'
 
-const Footer = () => {
+const Footer = ({ name,email,website,phone,bankName,bankAccount }) => {
   return (
     <>
-      <footer>
+      <footer className='border-t-2 border-t-300 pt-5'>
         <ul className='flex flex-wrap items-center justify-center'>
-        <li><span className='font-bold'>Your Name:</span> Jack Joe</li>
-        <li><span className='font-bold'>Your Email:</span>jack@gmail.com</li>
-        <li><span className='font-bold'>Your Phone:</span>9873678283</li>
-        <li><span className='font-bold'>Bank:</span> Bank Of India</li>
-        <li><span className='font-bold'>Account Holder:</span>Jack Joe</li>
-        <li><span className='font-bold'>Account Number:</span>283 482 83</li>
-        <li><span className='font-bold'>Website:</span>https://jackjoe.in</li>
+        <li><span className='font-bold'>Your Name:</span> {name}
+        </li>
+        <li><span className='font-bold'>Your Email:</span>{email}
+        </li>
+        <li><span className='font-bold'>Your Phone:</span>{phone}
+        </li>
+        <li><span className='font-bold'>Bank:</span> {bankName}
+        </li>
+        <li><span className='font-bold'>Account Holder:</span>{name}
+        </li>
+        <li><span className='font-bold'>Account Number:</span>{bankAccount}
+        </li>
+        <li><span className='font-bold'>Website:</span><a target='-blank' rel='noopenner norefferer' href={website}></a>{website}
+        </li>
       </ul>
       </footer>
     
