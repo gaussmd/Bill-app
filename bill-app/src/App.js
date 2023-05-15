@@ -64,7 +64,9 @@ const App = () => {
         ) : (
           <>
        <div className="flex flex-col justify-center">
-       <label htmlFor="name">Enter your Name</label>
+       <article className="grid grid-cols-2">
+          <div>
+          <label htmlFor="name"> Your Full Name</label>
        <input
             type="text"
             name="text"
@@ -74,6 +76,8 @@ const App = () => {
             value={name}
             onChange={(e)=>setName(e.target.value)}
           />
+          </div>
+           <div>
            <label htmlFor="address">Enter your Address</label>
        <input
             type="text"
@@ -84,7 +88,9 @@ const App = () => {
             value={address}
             onChange={(e)=>setAddress(e.target.value)}
           />
-                 <label htmlFor="email">Enter your Email</label>
+           </div>
+       </article>
+        <label htmlFor="email">Enter your Email</label>
        <input
             type="email"
             name="email"

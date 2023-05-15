@@ -7,3 +7,16 @@ footer li{
 button{
     user-select: none;
 }
+label{
+    margin-bottom: 0.2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+input,textarea{
+    background-color: #f1f1f1;
+    padding: 0.5rem 0.3rem;
+    border-radius: 0.3rem;
+    margin-bottom: 0.8rem;
+    color: #583939;
+    font-weight: 600;
+}
