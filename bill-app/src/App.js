@@ -7,22 +7,30 @@ import Header from "./components/Header";
 import MainDetails from "./components/MainDetails";
 import ClientDetails from "./components/ClientDetails";
 import Dates from "./components/Dates";
+import TableForm from "./components/TableForm";
 
 const App = () => {
-  const [showInvoice, setShowInvoice] = useState(false);
-  const[name,setName] =useState("");
-  const[address,setAddress] =useState("");
-  const[email,setEmail] =useState("");
-  const[phone,setPhone] =useState("");
-  const[bankName,setBankName] =useState("");
-  const[bankAccount,setBankAccount] =useState("");
-  const[website,setWebsite] =useState("");
-  const[clientName,setClientName] =useState("");
-  const[clientAddress,setClientAddress] =useState("");
-  const[billNumber,setBillNumber] =useState("");
-  const[billDate,setBillDate] =useState("");
-  const[dueDate,setDueDate] =useState("");
-  const[notes,setNotes] =useState("");
+  const [showInvoice, setShowInvoice] = useState(true);
+  const[name,setName] =useState("Raju Singh");
+  const[address,setAddress] =useState("Punjab,India");
+  const[email,setEmail] =useState("raju.singh@gmail.com");
+  const[phone,setPhone] =useState("+91 625 52");
+  const[bankName,setBankName] =useState("BOB");
+  const[bankAccount,setBankAccount] =useState("534 53 53");
+  const[website,setWebsite] =useState("https://raju.com");
+  const[clientName,setClientName] =useState("Ayan kapoor");
+  const[clientAddress,setClientAddress] =useState("Delhi,India");
+  const[billNumber,setBillNumber] =useState("52453 53");
+  const[billDate,setBillDate] =useState("03/06/2022");
+  const[dueDate,setDueDate] =useState("07/12/2022");
+  const[notes,setNotes] =useState("Kindly pay the All dues.we are requested ");
+  const[description,setDescription] = useState("");
+  const[quantity,setQuantity] = useState("");
+  const[price,setPrice] = useState("");
+  const[amount,setAmount] = useState("");
+  const [list,setList] = useState([]);
+  const[total,setTotal] = useState(0)
+
   const handlePrint = () => {
     window.print();
   };
@@ -45,7 +53,15 @@ const App = () => {
             <ClientDetails clientName={clientName} clientAddress={clientAddress}/>
             <Dates billNumber={billNumber} billDate={billDate} dueDate={dueDate} />
 
-            <Table />
+            <Table description={description}
+            quantity={quantity} 
+            price={price} 
+            amount={amount} 
+            list={list}
+            setList={setList}
+            total={total}
+            setTotal={setTotal}
+            />
 
             <Notes notes={notes}/>
 
@@ -64,8 +80,8 @@ const App = () => {
         ) : (
           <>
        <div className="flex flex-col justify-center">
-       <article className="grid grid-cols-2">
-          <div>
+       <article className=" md:grid grid-cols-2 gap-10">
+          <div className="flex flex-col">
           <label htmlFor="name"> Your Full Name</label>
        <input
             type="text"
@@ -76,8 +92,8 @@ const App = () => {
             value={name}
             onChange={(e)=>setName(e.target.value)}
           />
-          </div>
-           <div>
+          </div >
+           <div className="flex flex-col">
            <label htmlFor="address">Enter your Address</label>
        <input
             type="text"
@@ -90,7 +106,9 @@ const App = () => {
           />
            </div>
        </article>
-        <label htmlFor="email">Enter your Email</label>
+      <article className=" md:grid grid-cols-3 gap-10">
+       <div className="flex flex-col">
+       <label htmlFor="email">Enter your Email</label>
        <input
             type="email"
             name="email"
@@ -100,7 +118,9 @@ const App = () => {
             value={email}
             onChange={(e)=>setEmail(e.target.value)}
           />
-            <label htmlFor="website">Enter your Website</label>
+       </div>
+         <div className="flex flex-col">
+         <label htmlFor="website">Enter your Website</label>
        <input
             type="url"
             name="website"
@@ -110,7 +130,9 @@ const App = () => {
             value={website}
             onChange={(e)=>setWebsite(e.target.value)}
           />
-           <label htmlFor="phone">Enter your Phone</label>
+         </div>
+          <div className="flex flex-col">
+          <label htmlFor="phone">Enter your Phone</label>
        <input
             type="phone"
             name="phone"
@@ -120,7 +142,11 @@ const App = () => {
             value={phone}
             onChange={(e)=>setPhone(e.target.value)}
           />
-            <label htmlFor="bankName">Enter your Bank Name</label>
+          </div>
+      </article>
+         <article className="md:grid grid-cols-2 gap-10">
+         <div className="flex flex-col">
+         <label htmlFor="bankName">Enter your Bank Name</label>
        <input
             type="text"
             name="bankName"
@@ -130,7 +156,9 @@ const App = () => {
             value={bankName}
             onChange={(e)=>setBankName(e.target.value)}
           />
-                  <label htmlFor="bankAccoount">Enter your Bank Account Number</label>
+         </div>
+          <div className="flex flex-col">
+          <label htmlFor="bankAccoount">Enter your Bank Account Number</label>
        <input
             type="text"
             name="bankAccoount"
@@ -140,6 +168,10 @@ const App = () => {
             value={bankAccount}
             onChange={(e)=>setBankAccount(e.target.value)}
           />
+          </div>
+         </article>
+        <article className="md:grid grid-cols-2 gap-10 md:mt-20">
+         <div className="flex flex-col">
          <label htmlFor="clientName">Enter your Client's Name</label>
        <input
             type="text"
@@ -150,7 +182,9 @@ const App = () => {
             value={clientName}
             onChange={(e)=>setClientName(e.target.value)}
           />
-             <label htmlFor="clientAddress">Enter your Client Address</label>
+         </div>
+          <div className="flex flex-col">
+          <label htmlFor="clientAddress">Enter your Client Address</label>
        <input
             type="text"
             name="clientAddress"
@@ -160,7 +194,11 @@ const App = () => {
             value={clientAddress}
             onChange={(e)=>setClientAddress(e.target.value)}
           />
-             <label htmlFor="billNumber">Enter your Bill Number</label>
+          </div>
+        </article>
+             <article className="md:grid grid-cols-3 gap-10">
+          <div className="flex flex-col">
+          <label htmlFor="billNumber">Enter your Bill Number</label>
        <input
             type="text"
             name="billNumber"
@@ -170,7 +208,9 @@ const App = () => {
             value={billNumber}
             onChange={(e)=>setBillNumber(e.target.value)}
           />
-          <label htmlFor="billDate">Enter your Bill Date</label>
+          </div>
+               <div className="flex flex-col">
+               <label htmlFor="billDate">Enter your Bill Date</label>
        <input
             type="date"
             name="billDate"
@@ -180,7 +220,9 @@ const App = () => {
             value={billDate}
             onChange={(e)=>setBillDate(e.target.value)}
           />
-                   <label htmlFor="dueDate">Enter your Due Date</label>
+               </div>
+      <div className="flex flex-col">
+      <label htmlFor="dueDate">Enter your Due Date</label>
        <input
             type="date"
             name="dueDate"
@@ -190,6 +232,23 @@ const App = () => {
             value={dueDate}
             onChange={(e)=>setDueDate(e.target.value)}
           />
+      </div>
+             </article>
+             <article>
+              <TableForm description={description}
+              setDescription={setDescription}
+              quantity={quantity}
+              setQuantity={setQuantity}
+              price={price}
+              setPrice={setPrice}
+              amount={amount}
+              setAmount={setAmount}
+              list={list}
+              setList={setList}
+              total={total}
+              setTotal={setTotal}
+              />
+             </article>
           <label htmlFor="notes">Additional Notes</label>
           <textarea name="notes" id="notes" cols="30" rows="10"
           placeholder="Notes For the clients"

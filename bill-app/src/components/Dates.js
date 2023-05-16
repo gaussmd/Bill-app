@@ -3,7 +3,7 @@ import React from 'react'
 const Dates = ({billNumber,billDate,dueDate}) => {
   return (
     <>
-        <article className='mt-5 
+        <article className='mt-10 mb-20 
       flex items-end justify-end'>
         <ul>
           <li className='p-1'><span className='font-bold'>Bill Number:</span>{billNumber}</li>

@@ -19,6 +19,14 @@ const Footer = ({ name,email,website,phone,bankName,bankAccount }) => {
         </li>
         <li><span className='font-bold'>Website:</span><a target='-blank' rel='noopenner norefferer' href={website}></a>{website}
         </li>
+        <li><span>
+        <div className="mb-1">
+     Image <span className="font-css top">*</span>
+     <div className="">
+         <input type="file" id="file-input" name="ImageStyle"/>
+     </div>
+</div>
+          </span></li>
       </ul>
       </footer>
     
