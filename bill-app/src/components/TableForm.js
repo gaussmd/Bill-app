@@ -9,20 +9,25 @@ const TableForm = ({ description,setDescription,quantity,setQuantity,
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        const newItems ={
-            id:uuidv4(),
-            description,
-            quantity,
-            price,
-            amount,
+        if ( !description && !quantity && !price ) {
+         alert("Please fill the Input")
+        }else {
+            const newItems ={
+                id:uuidv4(),
+                description,
+                quantity,
+                price,
+                amount,
+            }
+            setDescription("");
+            setQuantity("");
+            setPrice("");
+            setAmount("");
+            setList([...list,newItems]);
+            setIsEditing(false)
+            console.log(list)
         }
-        setDescription("");
-        setQuantity("");
-        setPrice("");
-        setAmount("");
-        setList([...list,newItems]);
-        setIsEditing(false)
-        console.log(list)
+       
         }
 
      useEffect(()=>{

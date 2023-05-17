@@ -9,7 +9,7 @@ const Header = ({ handlePrint }) => {
           <h2 className='font-bold uppercase tracking-wide text-4xl mb-3'>Bill App</h2>
         </div>
         <div>
-          <ul className='flex item-center justify-between flex-wrap'>
+          {/* <ul className='flex item-center justify-between flex-wrap'>
             <li><button className="bg-gray-500 text-white
           font-bold py-2 px-8 rounded shadow
           border-2 border-gray-500 
@@ -28,7 +28,7 @@ const Header = ({ handlePrint }) => {
           hover:bg-transparent 
           hover:text-blue-500 
           transition-all duration-300">Send</button></li>
-          </ul>
+          </ul> */}
         </div>
       </header>
     </>

@@ -21,10 +21,10 @@ const Footer = ({ name,email,website,phone,bankName,bankAccount }) => {
         </li>
         <li><span>
         <div className="mb-1">
-     Image <span className="font-css top">*</span>
+     {/* Image <span className="font-css top">*</span>
      <div className="">
          <input type="file" id="file-input" name="ImageStyle"/>
-     </div>
+     </div> */}
 </div>
           </span></li>
       </ul>

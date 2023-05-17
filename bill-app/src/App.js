@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useRef, Component } from "react";
 import "./App.css";
 import Footer from "./components/Footer";
 import Notes from "./components/Notes";
@@ -8,28 +8,33 @@ import MainDetails from "./components/MainDetails";
 import ClientDetails from "./components/ClientDetails";
 import Dates from "./components/Dates";
 import TableForm from "./components/TableForm";
+import ReactToPrint from "react-to-print"
 
 const App = () => {
-  const [showInvoice, setShowInvoice] = useState(true);
-  const[name,setName] =useState("Raju Singh");
-  const[address,setAddress] =useState("Punjab,India");
-  const[email,setEmail] =useState("raju.singh@gmail.com");
-  const[phone,setPhone] =useState("+91 625 52");
-  const[bankName,setBankName] =useState("BOB");
-  const[bankAccount,setBankAccount] =useState("534 53 53");
-  const[website,setWebsite] =useState("https://raju.com");
-  const[clientName,setClientName] =useState("Ayan kapoor");
-  const[clientAddress,setClientAddress] =useState("Delhi,India");
-  const[billNumber,setBillNumber] =useState("52453 53");
-  const[billDate,setBillDate] =useState("03/06/2022");
-  const[dueDate,setDueDate] =useState("07/12/2022");
-  const[notes,setNotes] =useState("Kindly pay the All dues.we are requested ");
+  const [showInvoice, setShowInvoice] = useState(false);
+  const[name,setName] =useState("");
+  const[address,setAddress] =useState("");
+  const[email,setEmail] =useState("");
+  const[phone,setPhone] =useState("");
+  const[bankName,setBankName] =useState("");
+  const[bankAccount,setBankAccount] =useState("");
+  const[website,setWebsite] =useState("");
+  const[clientName,setClientName] =useState("");
+  const[clientAddress,setClientAddress] =useState("");
+  const[billNumber,setBillNumber] =useState("");
+  const[billDate,setBillDate] =useState("");
+  const[dueDate,setDueDate] =useState("2");
+  const[notes,setNotes] =useState(" ");
   const[description,setDescription] = useState("");
   const[quantity,setQuantity] = useState("");
   const[price,setPrice] = useState("");
   const[amount,setAmount] = useState("");
   const [list,setList] = useState([]);
   const[total,setTotal] = useState(0)
+
+
+  const componentRef = useRef();
+
 
   const handlePrint = () => {
     window.print();
@@ -45,8 +50,21 @@ const App = () => {
         className="m-5 p-5 md:max-w-xl md:mx-auto lg:max-w-2xl 
     xl:max-w-4xl bg-white rounded shadow "
       >
+        
         {showInvoice ? (
-          <div>
+           <>
+              <ReactToPrint trigger={()=> <button
+         className="ml-5 bg-green-500 text-white
+        font-bold py-2 px-8 rounded shadow
+        border-2 border-green-500 
+        hover:bg-transparent 
+        hover:text-green-500 
+        transition-all duration-300"
+        >Print / Download</button>}
+        content={()=>componentRef.current}
+        />
+
+            <div ref={componentRef} className="p-5">
             <Header handlePrint={handlePrint} />
 
             <MainDetails name={name} address={address}/>
@@ -67,16 +85,18 @@ const App = () => {
 
             <Footer name={name} address={address} website={website} email={email}
             phone={phone} bankAccount={bankAccount} bankName={bankName} />
-            <button 
-            className=" mt-5 bg-blue-500 text-white
-            font-bold py-2 px-8 rounded shadow
-            border-2 border-blue-500 
-            hover:bg-transparent 
-            hover:text-blue-500 
-            transition-all duration-300"
-            onClick={()=>setShowInvoice(false)}
-            >Edit Info</button>
           </div>
+          
+              <button 
+              className=" mt-5 bg-blue-500 text-white
+              font-bold py-2 px-8 rounded shadow
+              border-2 border-blue-500 
+              hover:bg-transparent 
+              hover:text-blue-500 
+              transition-all duration-300"
+              onClick={()=>setShowInvoice(false)}
+              >Edit Info</button>
+               </>
         ) : (
           <>
        <div className="flex flex-col justify-center">
